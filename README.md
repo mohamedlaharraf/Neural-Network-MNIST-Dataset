@@ -1,14 +1,14 @@
-# MNIST_FastAI
-This is one of the most popular and basic competitions from kaggle which is called MNIST digit recognition written using the FastAI library.<br>
-I was surprised by how simple and powerful it is. 
-With just a few lines of code, I reached 99.5 % on the leaderboard
+# Digit Recognition
+A handwritten digit recognition web app using Convolutional Neural Networks. Built with Keras and Tensorflow.js
 
-I highly recommend taking FastAI course because it focuses more on practice and it will fill any gaps you didn't remember or didn't study.
+The model was built and trained in python using the Keras library, then saved using the Tensorflow.js converter.
 
-In addition, I created a visualization of the model using Gradio. 
-Gradio is a tool for visualizing demos that is very straightforward and simple to use for this type of thing
+Check out the [app demo](https://jarbun.github.io/digit-recognition/) or the [video demo](https://www.youtube.com/watch?v=3SGc7YDmzME).
 
-- [FastAI course](https://course.fast.ai/videos/?lesson=1)
-- [Kaggle competition](https://www.kaggle.com/c/digit-recognizer)
+## Screenshots
 
-![visualization](assets/mnist_demo.gif)
+![screenshot 1](https://user-images.githubusercontent.com/23068820/43353830-8e2c9548-925e-11e8-894a-5d9409516df1.png)
+![screenshot 2](https://user-images.githubusercontent.com/23068820/43353832-8ee95c14-925e-11e8-9677-54080beb4e2c.png)
+
+## License
+This project is licensed under the terms of the MIT license.
