@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Digit recognition</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.15.0"> </script>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets2/css/styles.css" />
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">DEGIT RECOGNITION</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Prédiction</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About Us </a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+              
+
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading text-uppercase mb-0">DIGIT RECOGNITION</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <!--div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div-->
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0">La reconnaissance des chiffres manuscrits du MNIST en utilisant un reseau de neurone convolutif. Basé sur  Keras et TensorFlow.js</p>
+            </div>
+        </header>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">PREDICTION</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <!--div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div-->
+                </div>
+                <!-- Prediction Grid Items-->
+                <div class="row justify-content-center">
+                    <!-- MAIN CANVAS-->
+                    <div class="col-6 col-md-4"  style="padding-left: 20px;"  >
+                        <canvas id="main-canvas" width="300" height="300" style="margin-top:  80px;"></canvas>
+                    </div>
+                    <!-- PREDICTION-->
+                    <div class="col-6 col-md-4">
+                        <div id="prediction" style="margin-top:  80px;"></div>
+                    </div>
+                    
+                    <div class=" col-6 col-md-4" >
+                        <input  class="form-control " type="text" name="screen" id="answer" style="margin-left: 20px; " readonly>
+                        <table style=" margin-top:  20px;">
+                            <tr>
+                                <td><button class="operation btn btn-xl btn-outline-success">(</button></td>
+                                <td><button class="operation btn btn-xl btn-outline-success">)</button></td>
+                                <td><button  class="operation btn btn-xl btn-outline-success">c</button></td>
+                                <td><button  class="operation btn btn-xl btn-outline-success">=</button></td>
+                                
+                            </tr>
+                            <tr>
+                                
+                                <td><button class="operation btn btn-xl btn-outline-success">*</button></td>
+                                <td><button class="operation btn btn-xl btn-outline-success">-</button></td>
+                                <td><button class="operation btn btn-xl btn-outline-success">+</button></td>
+                                <td><button class="operation btn btn-xl btn-outline-success">/</button></td>
+                            </tr>
+                            <tr>
+                                
+                                <td colspan="2">
+                                    <button id="erase" class="btn1 btn-xl btn-outline-success"  >
+                                        <i class="fas fa fa-eraser me-2"></i>
+                                        Clear
+                                     </button>
+                               </td>
+                                
+                                <td colspan="2">
+                                    <button id="erase" class="btn1 btn-xl btn-outline-success" onclick="predict_onclick()"  >
+                                     <i class="fas fa-search-plus me-2"></i>
+                                     predict
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                <td colspan="2">
+                                    <button id="erase" class="btn1 btn-xl btn-outline-success"  onclick="saveNumber()"  >
+                                        <i class="fas fa-download me-2"></i>
+                                       Save
+                                    </button>
+                               </td>
+                                
+                                <td colspan="2">
+                                    <button  class="btn1 btn-xl btn-outline-success" onclick="resetClick()" >
+                                        <i class="fas fa fa-refresh me-2"></i>
+                                        reset  
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--button id="erase" class="btn btn-xl btn-outline-success" style="margin-top:  10px;" >
+                            <i class="fas fa fa-eraser me-2"></i>
+                            Clear
+                        </button>
+                        <button id="erase" class="btn btn-xl btn-outline-success" onclick="predict_onclick()" style="margin-top:  10px;margin-left: 45px;" >
+                            <i class="fas fa-search-plus me-2"></i>
+                            predict
+                        </button>
+                        <button id="erase" class="btn btn-xl btn-outline-success"  onclick="saveNumber()"  style="margin-top:  10px;">
+                            <i class="fas fa-download me-2"></i>
+                           Save
+                        </button>
+                        <button  class="btn btn-xl btn-outline-success" onclick="resetClick()" style="margin-top:  10px; margin-left: 10px;">
+                            <i class="fas fa fa-refresh me-2"></i>
+                            resetIfFalse
+                        </button-->
+                        <canvas id="small-canvas" width="28" height="28"></canvas>
+                    </div>
+                  
+                </div>
+               
+                
+                
+            </div>
+        </section>
+        <!-- About Section-->
+        <section class="member section container" id="Members">
+            <h2 class="section__title-center">Membres</h2>
+        
+            <div class="member__container grid">
+                <article class="member__card">
+                    <div class="member__circle"></div>
+        
+                    <img src="assets2/img/mohamed.PNG" alt="" class="member__img" />
+        
+                    <h3 class="member__title">Mohamed LAHARRAF</h3>
+                    <span class="member__price"></span>
+        
+                    <a>
+                        <button class="button--flex member__button">
+                            <i class="ri-linkedin-fill"> </i>
+                        </button>
+                    </a>
+                </article>
+        
+                <article class="member__card">
+                    <div class="member__circle"></div>
+        
+                    <img src="assets2/img/malika.png" alt="" class="member__img" />
+        
+                    <h3 class="member__title">Malika CHALGHOUMI</h3>
+                    <span class="member__price"><br /></span>
+        
+                    <a>
+                        <button class="button--flex member__button">
+                            <i class="ri-linkedin-fill"> </i>
+                        </button>
+                    </a>
+                </article>
+                <article class="member__card">
+                    <div class="member__circle"></div>
+        
+                    <img src="assets2/img/hala.png" alt="" class="member__img" />
+        
+                    <h3 class="member__title">Hala BIHI</h3>
+                    <span class="member__price"><br /></span>
+        
+                    <a>
+                        <button class="button--flex member__button">
+                            <i class="ri-linkedin-fill"> </i>
+                        </button>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+      
+     
+       
+       
+     
+   
+   
+        <script src="script.js"></script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+     
+        <!--script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script-->
+    </body>
+</html>
